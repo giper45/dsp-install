@@ -4,6 +4,6 @@ Maintainer: gx1
 Architecture: all
 Description: Docker Security Playground package installer
 Build-Depends: debhelper (>= 9)
-Depends: nodejs, npm, curl, docker.io, build-essential
+Depends: nodejs, npm, curl, docker.io, docker-compose, build-essential
 
 
