@@ -4,12 +4,22 @@ DEB_DSP = dsp_$(VERSION)_amd64.deb
 build:
 	dpkg-deb --build dsp $(DEB_DSP)
 
+ppa-clone:
+	git clone git@github.com:DockerSecurityPlayground/ppa.git
 ppa: build
-	@echo git clone git@github.com:DockerSecurityPlayground/ppa.git
 	mv $(DEB_DSP) ppa
 	cd ppa
+	dpkg-scanpackages --multiversion . > Packages
+	gzip -k -f Packages
+	apt-ftparchive release . > Release
+	gpg --default-key "${EMAIL}" -abs -o - Release > Release.gpg
+	gpg --default-key "${EMAIL}" --clearsign -o - Release > InRelease
+
+
+
+
 	git add -A  
-	git commit -am "Updated $(date)"
+	git commit -am "Updated $(shell date)"
 
 install:
 	sudo apt install -f ./dsp.deb
