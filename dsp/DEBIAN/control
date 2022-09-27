@@ -1,0 +1,9 @@
+Package: dsp
+Version: 3.8
+Maintainer: gx1
+Architecture: all
+Description: Docker Security Playground package installer
+Build-Depends: debhelper (>= 9)
+Depends: nodejs, npm, curl, docker.io, build-essential
+
+

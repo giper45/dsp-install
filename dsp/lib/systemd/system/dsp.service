@@ -1,0 +1,11 @@
+[Unit]
+Description=dsp- Docker Security Playground
+Documentation=https://github.com/DockerSecurityPlayground/DSP
+After=network.target
+
+[Service]
+Type=simple
+User=dsp
+ExecStart=/usr/bin/node /opt/dsp/index.js
+Restart=on-failure
+

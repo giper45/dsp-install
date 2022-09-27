@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+echo "To remove"
+echo "remove dsp user"
+# Check user does not exist
+userdel dsp

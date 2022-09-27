@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+echo "Add dsp user"
+adduser --system   --no-create-home --group  dsp
+echo "Add dsp to docker group" 
+usermod -a -G docker dsp
+
+echo "Install dsp"
+cd /opt/dsp/
+npm install
+
+
+
