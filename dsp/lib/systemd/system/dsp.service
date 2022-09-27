@@ -6,6 +6,6 @@ After=network.target
 [Service]
 Type=simple
 User=dsp
-ExecStart=/usr/bin/node /opt/dsp/index.js
+ExecStart=/usr/bin/npm start
+WorkingDirectory=/opt/dsp
 Restart=on-failure
-
