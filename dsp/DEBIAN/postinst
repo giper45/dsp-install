@@ -9,8 +9,8 @@ usermod -a -G docker dsp
 
 echo "Install dsp"
 cd /opt/dsp/
-chown -R dsp:dsp /opt/dsp
 npm install
+chown -R dsp:dsp /opt/dsp
 
 
 

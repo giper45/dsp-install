@@ -5,8 +5,8 @@ build:
 	dpkg-deb --build dsp $(DEB_DSP)
 
 ppa: build
-	git clone git@github.com:DockerSecurityPlayground/ppa.git
-	mv $(DEB_DSP)
+	@echo git clone git@github.com:DockerSecurityPlayground/ppa.git
+	mv $(DEB_DSP) ppa
 	cd ppa
 	git add -A  
 	git commit -am "Updated $(date)"
