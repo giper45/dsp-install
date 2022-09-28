@@ -1,4 +1,6 @@
 include .env
+.ONESHELL:
+
 MULTIEXIST = $(shell multipass list | grep 'dsp' | cut -d " " -f1)
 VERSION = 3.8.0
 DEB_DSP = dsp_$(VERSION)_amd64.deb
