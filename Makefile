@@ -1,3 +1,4 @@
+include .env
 MULTIEXIST = $(shell multipass list | grep 'dsp' | cut -d " " -f1)
 VERSION = 3.8.0
 DEB_DSP = dsp_$(VERSION)_amd64.deb
@@ -7,6 +8,7 @@ build:
 ppa-clone:
 	git clone git@github.com:DockerSecurityPlayground/ppa.git
 ppa: build
+	rm  ppa/*
 	mv $(DEB_DSP) ppa
 	cd ppa
 	dpkg-scanpackages --multiversion . > Packages
@@ -16,10 +18,11 @@ ppa: build
 	gpg --default-key "${EMAIL}" --clearsign -o - Release > InRelease
 
 
-
+	echo "deb https://dockersecurityplayground.github.io/ppa/ ./" > dsp.list
 
 	git add -A  
 	git commit -am "Updated $(shell date)"
+	git push 
 
 install:
 	sudo apt install -f ./dsp.deb
