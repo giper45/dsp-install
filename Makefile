@@ -4,8 +4,9 @@ include .env
 MULTIEXIST = $(shell multipass list | grep 'dsp' | cut -d " " -f1)
 VERSION = 3.8.0
 DEB_DSP = dsp_$(VERSION)_amd64.deb
+# Avoid zsd compression
 build:
-	dpkg-deb --build dsp $(DEB_DSP)
+	dpkg-deb -Zxz --build dsp $(DEB_DSP)
 
 ppa-clone:
 	git clone git@github.com:DockerSecurityPlayground/ppa.git
@@ -13,6 +14,7 @@ ppa: build
 	rm  ppa/*
 	mv $(DEB_DSP) ppa
 	cd ppa
+	gpg --armor --export "${EMAIL}" > KEY.gpg
 	dpkg-scanpackages --multiversion . > Packages
 	gzip -k -f Packages
 	apt-ftparchive release . > Release

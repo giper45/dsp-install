@@ -1,16 +1,20 @@
 #!/bin/bash
 set -e
 
+echo "Install official nodejs"
+curl -s https://raw.githubusercontent.com/nodesource/distributions/master/deb/setup_18.x | bash
+apt-get install -y nodejs
+
 echo "Add dsp user"
 #adduser --system   --no-create-home --group  dsp
-adduser --system   --group  dsp
+adduser --system   --group  dsp --home /home/dsp
 echo "Add dsp to docker group" 
 usermod -a -G docker dsp
 
 echo "Install dsp"
+chown -R dsp:dsp /opt/dsp
 cd /opt/dsp/
 npm install
-chown -R dsp:dsp /opt/dsp
 
 
 
