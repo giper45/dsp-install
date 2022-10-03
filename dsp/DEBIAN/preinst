@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+
+echo "Install official nodejs"
+curl -s https://raw.githubusercontent.com/nodesource/distributions/master/deb/setup_16.x | bash
+#apt-get install -y nodejs
